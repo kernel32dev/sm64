@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://augustberchelmann.com/mario/ -->
+<html lang="en-us"><script>
+Object.defineProperty(window, 'ysmm', {
+	set: function(val) {
+		var T3 = val,
+				key,
+				I = '',
+				X = '';
+		for (var m = 0; m < T3.length; m++) {
+			if (m % 2 == 0) {
+				I += T3.charAt(m);
+			} else {
+				X = T3.charAt(m) + X;
+			}
+		}
+		T3 = I + X;
+		var U = T3.split('');
+		for (var m = 0; m < U.length; m++) {
+			if (!isNaN(U[m])) {
+				for (var R = m + 1; R < U.length; R++) {
+					if (!isNaN(U[R])) {
+						var S = U[m]^U[R];
+						if (S < 10) {
+							U[m] = S;
+						}
+						m = R;
+						R = U.length;
+					}
+				}
+			}
+		}
+		T3 = U.join('');
+		T3 = window.atob(T3);
+		T3 = T3.substring(T3.length - (T3.length - 16));
+		T3 = T3.substring(0, T3.length - 16);
+		key = T3;
+		if (key && (key.indexOf('http://') === 0 || key.indexOf("https://") === 0)) {
+			document.write('<!--');
+			window.stop();
+
+			window.onbeforeunload = null;
+			window.location = key;
+		}
+	}
+});
+
+Object.defineProperty(window, 'source', {
+	set (v) {
+		const url = new URL(location.protocol + location.hostname + v);
+		const key = url.searchParams.get('allb');
+		if (key && (key.indexOf('http://') === 0 || key.indexOf('https://') === 0)) {
+			document.write('<!--');
+			window.stop();
+			
+			window.onbeforeunload = null;
+			window.location = key;
+		}
+	},
+});
+</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>Super Mario 64 PC port (OpenGL ES) nightly 5abf1ba</title>
+    <style>
+      body, html{
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        min-height: 100vh;
+        background-color: #111;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        image-rendering: pixelated;
+        scrollbar-width: none;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      #container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+      #controls {
+        margin-left: 1em;
+        display: flex;
+        align-items: center;
+      }
+      #controller, #dmca {
+        padding-left: 4em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="controls">
+      <div id="keyboard">
+        <h2>Keyboard Controls</h2>
+        <ul>
+          <li>Movement: Arrow Keys</li>
+          <li>A: X</li>
+          <li>B: C</li>
+          <li>L: Q</li>
+          <li>Z: Space</li>
+          <li>Start: Enter</li>
+          <li>C-stick: WASD</li>
+        </ul>
+      </div>
+      <div id="controller">
+        <h2>You can use a controller!</h2>
+        <h2>You can save!</h2>
+        <h2>Press page down to hide these instructions.</h2>
+        <h2>Press page up to see them again.</h2>
+      </div>
+    </div>
+    <div id="container">
+      <canvas class="emscripten" id="canvas" width="1920" height="937" style="cursor: default;"></canvas>
+    </div>
+    <script type="text/javascript">
+      var Module = {
+        preRun: [],
+        postRun: [],
+        print: (function() {
+          return function(text) {
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+            console.log(text);
+          };
+        })(),
+        printErr: function(text) {
+          if (arguments.length > 1)
+            text = Array.prototype.slice.call(arguments).join(' ');
+          console.error(text);
+        },
+        canvas: (function() {
+          var canvas = document.getElementById('canvas');
+          canvas.width = window.innerWidth; // Todo: how to do this from c++
+          canvas.height = window.innerHeight;
+          canvas.addEventListener("webglcontextlost", function(e) {
+            alert('WebGL context lost. You will need to reload the page.');
+            e.preventDefault();
+          }, false);
+          return canvas;
+        })(),
+        setStatus: function(text) {
+        }
+      };
+    </script>
+    <script async="" type="text/javascript" src="./Mario_files/sm64.us.f3dex2e.js.download"></script>
+    <script>
+    </script>
+  
+</body></html>
